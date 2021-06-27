@@ -3,6 +3,7 @@ import "modern-css-reset"
 import styled from "styled-components";
 
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
+import useData from "./useData"
 
 import Header from "./Header";
 import Home from "./Home";
@@ -18,19 +19,11 @@ const Container = styled.div`
     `
 
 const App = () => {
-    const mockData = {
-        categories: [
-            {title: "Food", expense: 90, id: 1},
-            {title: "Clothes", expense: 88, id: 2},
-            {title: "Books", expense: 71, id: 3},
-        ],
-        income: [
-            {title: "Salary", amount: 10000},
-            {title: "Additional", amount: 5000}
-        ],
-    }
+    const categories = useData(state => state.categories);
+    const expense = useData(state => state.expense);
+    const income = useData(state => state.income);
 
-    const totalIncomeAmount = mockData.income.reduce((acc, cur) => acc + cur.amount, 0)
+    const totalIncomeAmount = income.reduce((acc, cur) => acc + cur.amount, 0)
 
   return (
       <Container>
@@ -38,7 +31,7 @@ const App = () => {
               <Header/>
               <Switch>
                   <Route path={"/categories"}>
-                      <Categories categories={mockData.categories} totalIncomeAmount={totalIncomeAmount}/>
+                      <Categories categories={categories} totalIncomeAmount={totalIncomeAmount}/>
                   </Route>
                   <Route path={"/expense"}>
                       <Expense/>
