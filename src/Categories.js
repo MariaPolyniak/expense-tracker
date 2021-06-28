@@ -1,12 +1,12 @@
 import React from "react";
 import Category from "./Category";
-import AddNewCategory from "./AddNewCategory";
+import NewCategory from "./NewCategory";
 
-const Categories = (({categories, totalIncomeAmount}) => {
+const Categories = (({categories, totalIncomeAmount, addNewCategory, deleteSelectedCategory, updateSelectedCategory}) => {
     return (
         <>
-            <AddNewCategory/>
-            {categories.map(category => <Category title={category.title} expense={category.expense} totalIncomeAmount={totalIncomeAmount} key={category.id}/>)}
+            <NewCategory addNewCategory={addNewCategory} />
+            {categories.map(category => <Category category={category} totalIncomeAmount={totalIncomeAmount} deleteSelectedCategory={deleteSelectedCategory} updateSelectedCategory={updateSelectedCategory} key={category.id}/>)}
         </>
     )
 })

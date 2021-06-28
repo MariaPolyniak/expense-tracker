@@ -22,6 +22,9 @@ const App = () => {
     const categories = useData(state => state.categories);
     const expense = useData(state => state.expense);
     const income = useData(state => state.income);
+    const addNewCategory = useData(state => state.addNewCategory);
+    const deleteSelectedCategory = useData(state => state.deleteSelectedCategory);
+    const updateSelectedCategory = useData(state => state.updateSelectedCategory);
 
     const totalIncomeAmount = income.reduce((acc, cur) => acc + cur.amount, 0)
 
@@ -31,7 +34,7 @@ const App = () => {
               <Header/>
               <Switch>
                   <Route path={"/categories"}>
-                      <Categories categories={categories} totalIncomeAmount={totalIncomeAmount}/>
+                      <Categories categories={categories} totalIncomeAmount={totalIncomeAmount} addNewCategory={addNewCategory} deleteSelectedCategory={deleteSelectedCategory} updateSelectedCategory={updateSelectedCategory}/>
                   </Route>
                   <Route path={"/expense"}>
                       <Expense/>
